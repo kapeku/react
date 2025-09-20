@@ -1,7 +1,7 @@
 import React from 'react';
 import AnswerButton from './AnswerButton';
 
-const Question = ({ question, onAnswer, hasAnswered, selectedIndex, onFinishQuiz, isLastQuestion, onNextQuestion, currentQuestionIndex, totalQuestions }) => {
+const Question = ({ question, onAnswer, hasAnswered, selectedIndex, onFinishQuiz, isLastQuestion}) => {
   return (
     <div className="p-4">
       <h2 className="text-xl mb-4 font-semibold text-gray-800">{question.text}</h2>

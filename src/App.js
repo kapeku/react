@@ -5,11 +5,16 @@ import Result from "./components/Result";
 import QuizStats from "./components/QuizStats";
 import QuestionNavigation from "./components/QuestionNavigation";
 import { questions } from "./data/questions";
-import { useQuiz } from "./hooks/useQuiz";
 import { shuffleQuestions, shuffleAnswers } from "./utils/quizUtils";
 
 export default function App() {
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
+  const [isFinished, setIsFinished] = useState(false);
+  const [answeredQuestions, setAnsweredQuestions] = useState(new Set());
+  const [selectedAnswers, setSelectedAnswers] = useState({}); // { [questionIndex]: answerIndex }
+  const [isCorrectByQuestion, setIsCorrectByQuestion] = useState({}); // { [questionIndex]: boolean }
 
   useEffect(() => {
     const shuffled = shuffleQuestions(questions).map(q => ({
@@ -19,19 +24,44 @@ export default function App() {
     setShuffledQuestions(shuffled);
   }, []);
 
-  const {
-    currentQuestion,
-    score,
-    isFinished,
-    answeredQuestions,
-    selectedAnswers,
-    isCorrectByQuestion,
-    handleAnswer,
-    finishQuiz,
-    nextQuestion,
-    restartQuiz,
-    goToQuestion
-  } = useQuiz(shuffledQuestions);
+  const handleAnswer = (isCorrect, answerIndex) => {
+    if (answeredQuestions.has(currentQuestion)) {
+      return;
+    }
+
+    setSelectedAnswers(prev => ({ ...prev, [currentQuestion]: answerIndex }));
+    setIsCorrectByQuestion(prev => ({ ...prev, [currentQuestion]: !!isCorrect }));
+
+    setAnsweredQuestions(prev => {
+      const next = new Set(prev);
+      next.add(currentQuestion);
+      return next;
+    });
+
+    if (isCorrect) {
+      setScore(prev => prev + 1);
+    }
+  };
+
+  const finishQuiz = () => {
+    setIsFinished(true);
+  };
+
+
+  const restartQuiz = () => {
+    setCurrentQuestion(0);
+    setScore(0);
+    setIsFinished(false);
+    setAnsweredQuestions(new Set());
+    setSelectedAnswers({});
+    setIsCorrectByQuestion({});
+  };
+
+  const goToQuestion = (questionIndex) => {
+    if (questionIndex >= 0 && questionIndex < shuffledQuestions.length) {
+      setCurrentQuestion(questionIndex);
+    }
+  };
 
   const handleRestart = () => {
     const shuffled = shuffleQuestions(questions).map(q => ({
