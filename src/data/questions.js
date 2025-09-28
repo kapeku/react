@@ -8,7 +8,6 @@ export const questions = [
       { text: "Флориан Виртц", isCorrect: false },
       { text: "Александр Исак", isCorrect: true },
     ],
-    
   },
   {
     id: 2,
@@ -19,7 +18,6 @@ export const questions = [
       { text: "Эден Азар", isCorrect: false },
       { text: "Криштиану Роналду", isCorrect: false },
     ],
-    
   },
   {
     id: 3,
@@ -29,7 +27,6 @@ export const questions = [
       { text: "Джон Кордоба", isCorrect: false },
       { text: "Эдуард Сперцян", isCorrect: false },
     ],
-    
   },
   {
     id: 4,
@@ -40,7 +37,6 @@ export const questions = [
       { text: "2008", isCorrect: true },
       { text: "2009", isCorrect: false },
     ],
-    
   },
   {
     id: 5,
@@ -51,7 +47,6 @@ export const questions = [
       { text: "Мо Салах", isCorrect: false },
       { text: "Энди Коул", isCorrect: false },
     ],
-    
   }
 ];
 

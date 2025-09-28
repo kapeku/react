@@ -8,7 +8,7 @@ const QuestionNavigation = ({
   isCorrectByQuestion 
 }) => {
   const renderQuestionButton = (index) => {
-    const isAnswered = answeredQuestions.has(index);
+    const isAnswered = answeredQuestions.includes(index);
     const isCurrent = index == currentQuestion;
     const isCorrect = isCorrectByQuestion && isCorrectByQuestion[index];
     

@@ -18,9 +18,9 @@ const Result = ({ score, total, onRestart }) => {
       </div>
       <button
         onClick={onRestart}
-        className="px-6 py-3 border rounded-lg bg-green-500 text-white hover:bg-green-600 transition-colors duration-200 font-semibold text-lg"
+        className="px-6 py-3 border rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200 font-semibold text-lg"
       >
-        Пройти снова
+        Вернуться на экран выбора викторины
       </button>
     </div>
   );

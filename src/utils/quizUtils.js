@@ -44,7 +44,7 @@ export const validateAnswer = (answer) => {
 // Функция для подсчета статистики
 export const calculateStats = (questions, answeredQuestions, score) => {
   const totalQuestions = questions.length;
-  const answeredCount = answeredQuestions.size;
+  const answeredCount = answeredQuestions.length; // теперь это массив, а не Set
   const correctAnswers = score;
   const incorrectAnswers = answeredCount - correctAnswers;
   const accuracy = answeredCount > 0 ? (correctAnswers / answeredCount) * 100 : 0;
